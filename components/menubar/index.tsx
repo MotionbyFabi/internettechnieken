@@ -9,7 +9,7 @@ import { format } from "date-fns";
 const Index = () => {
   const appName = useAppStore((state) => state.appName);
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [open, setClose] = useAppOpen((state) => [state.open, state.setClose]);
+  const [open, setClose, setOpen] = useAppOpen((state) => [state.open, state.setClose, state.setOpen]);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [max, setMax, setMin] = useAppMax((state) => [
@@ -21,6 +21,7 @@ const Index = () => {
   console.log(open);
 
   const handleClickClose = () => {
+    
     setClose(true);
   };
   const handleClickMaximize = () => {
@@ -29,6 +30,10 @@ const Index = () => {
     } else if (max === false) {
       setMax(true);
     }
+  };
+  const handleClickOpen = () => {
+    setOpen(true);
+    
   };
 
   const [date, setDate] = useState(new Date());
@@ -73,6 +78,13 @@ const Index = () => {
                     onClick={() => handleClickMaximize()}
                   >
                     Maximize Window
+                  </li>
+                  <hr className="opacity-[0.2] h-[0.2px]" />
+                  <li
+                    className="cursor-pointer"
+                    onClick={() => handleClickOpen()}
+                  >
+                    Open Window
                   </li>
                 </ul>
               </div>
